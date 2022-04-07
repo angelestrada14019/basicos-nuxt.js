@@ -1,11 +1,17 @@
 <template>
   <div>
-    <h3>Hola mundo desde vue {{ number }}</h3>
+    <h3>Hola mundo desde vue {{ devices.length }}</h3>
     <table>
       <tr>
         <th>Name</th>
         <th>Id</th>
         <th>Value</th>
+      </tr>
+
+      <tr v-for="device in devices" :key="device">
+        <td>{{device.name.toUpperCase()}}</td>
+        <td>{{device.id}}</td>
+        <td>{{device.value}} °C</td>
       </tr>
 
     </table>
@@ -39,23 +45,25 @@ export default {
     console.log("created");
   },
   mounted() {
-    setTimeout(() => {
       this.getDevices();
-    }, 3000);
+    // setTimeout(() => {
+    // }, 3000);
   },
   updated() {
-    this.loadNumberDevices();
+    //this.loadNumberDevices();
 
   },
   unmounted() {},
   methods: {
     loadNumberDevices() {
-      this.number=this.devices.length;
+
     },
     getDevices(){
       let response= [
         { name: "Home", id: 1, value: 0 },
         { name: "Office", id: 2, value: 0 },
+        { name: "Office", id: 2, value: 0 },
+        { name: "Kitchen", id: 3, value: 0 },
         { name: "Kitchen", id: 3, value: 0 },
       ];
       this.devices= response;
